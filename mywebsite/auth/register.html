@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | GetEducators</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 55px;
+            margin-right: 10px;
+        }
+    :root {
+      --primary-color: #4a6fa5;
+      --secondary-color: #166088;
+      --tutor-color: #6a5acd;
+      --student-color: #28a745;
+      --light-color: #f8f9fa;
+      --dark-color: #343a40;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    .auth-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .auth-left {
+  flex: 1;
+  background-color: #122A3F;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+}
+
+    .auth-left h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .auth-left p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      max-width: 500px;
+    }
+
+    .auth-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background-color: var(--light-color);
+    }
+
+    .auth-form {
+      width: 100%;
+      max-width: 450px;
+      background: white;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+
+    .auth-form h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: var(--dark-color);
+    }
+
+    .auth-form p {
+      color: #6c757d;
+      margin-bottom: 30px;
+    }
+
+    /* Updated to match login page style */
+    .user-type-selector {
+      display: flex;
+      margin-bottom: 25px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+
+    .user-type-btn {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      font-weight: 500;
+      background-color: rgba(74, 111, 165, 0.1);
+      color: var(--primary-color);
+    }
+
+    .user-type-btn input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .user-type-btn.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark-color);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+    }
+
+    .name-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .btn-block {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-block:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .form-footer a {
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #eee;
+    }
+
+    .divider-text {
+      padding: 0 10px;
+      color: #6c757d;
+      font-size: 14px;
+    }
+
+    .social-login {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      background-color: #f8f9fa;
+    }
+
+    .social-btn.google {
+      color: #DB4437;
+    }
+
+    .social-btn.facebook {
+      color: #4267B2;
+    }
+
+    /* Tutor-specific fields */
+    .tutor-fields {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .student-fields {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Password strength indicator */
+    .password-strength {
+      height: 4px;
+      background-color: #eee;
+      border-radius: 2px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .strength-meter {
+      height: 100%;
+      width: 0;
+      background-color: #dc3545;
+      transition: var(--transition);
+    }
+
+    /* Terms checkbox */
+    .terms-group {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .terms-group input {
+      margin-right: 10px;
+      margin-top: 3px;
+    }
+
+    .terms-group label {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .terms-group a {
+      color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      .auth-container {
+        flex-direction: column;
+      }
+      
+      .auth-left {
+        padding: 40px 20px;
+        text-align: center;
+      }
+      
+      .auth-right {
+        padding: 40px 20px;
+      }
+
+      .name-fields {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-left">
+      <h2>Join Our Community</h2>
+      <p>Register as a tutor to share your knowledge or as a student to find the perfect tutor for your learning needs.</p>
+      <div class="auth-features">
+        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+          <i class="fas fa-check-circle" style="margin-right: 10px; font-size: 18px;"></i>
+          <span>Connect with verified tutors or eager students</span>
+        </div>
+        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+          <i class="fas fa-check-circle" style="margin-right: 10px; font-size: 18px;"></i>
+          <span>Flexible scheduling and secure payments</span>
+        </div>
+        <div style="display: flex; align-items: center;">
+          <i class="fas fa-check-circle" style="margin-right: 10px; font-size: 18px;"></i>
+          <span>Personalized learning experience for everyone</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="auth-right">
+      <div class="auth-form">
+        <div class="logo">
+                <img src="C:\Users\Enami\Desktop\mywebsite\images\logo.jpg" alt="GetEducators">
+                
+            </div><br>
+        <h1>Create Account</h1>
+        <p>Select your role and fill in your details</p>
+        
+        <form id="registerForm">
+          <!-- Updated to match login page style -->
+          <div class="user-type-selector">
+            <label class="user-type-btn active" id="tutorBtn">
+              <input type="radio" name="userType" value="tutor" checked>
+              <i class="fas fa-chalkboard-teacher"></i> Tutor
+            </label>
+            <label class="user-type-btn" id="studentBtn">
+              <input type="radio" name="userType" value="student">
+              <i class="fas fa-user-graduate"></i> Student
+            </label>
+          </div>
+          
+          <div class="name-fields">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" class="form-control" placeholder="Enter your first name" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" class="form-control" placeholder="Enter your last name" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+            <div class="password-strength">
+              <div class="strength-meter" id="strengthMeter"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+          </div>
+          
+          <!-- Tutor Specific Fields -->
+          <div class="tutor-fields" id="tutorFields">
+            <div class="form-group">
+              <label for="qualification">Highest Qualification</label>
+              <input type="text" id="qualification" class="form-control" placeholder="e.g., MSc Computer Science">
+            </div>
+            
+            <div class="form-group">
+              <label for="subjects">Subjects You Teach</label>
+              <input type="text" id="subjects" class="form-control" placeholder="e.g., Math, Physics, Chemistry">
+            </div>
+            
+            <div class="form-group">
+              <label for="experience">Years of Experience</label>
+              <select id="experience" class="form-control">
+                <option value="">Select experience</option>
+                <option value="0-1">0-1 years</option>
+                <option value="1-3">1-3 years</option>
+                <option value="3-5">3-5 years</option>
+                <option value="5+">5+ years</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Student Specific Fields -->
+          <div class="student-fields" id="studentFields">
+            <div class="form-group">
+              <label for="gradeLevel">Grade/Education Level</label>
+              <select id="gradeLevel" class="form-control">
+                <option value="">Select your level</option>
+                <option value="primary">Primary School</option>
+                <option value="middle">Middle School</option>
+                <option value="high">High School</option>
+                <option value="college">College/University</option>
+                <option value="adult">Adult Learner</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="interestedSubjects">Subjects of Interest</label>
+              <input type="text" id="interestedSubjects" class="form-control" placeholder="e.g., Math, Biology, English">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="location">Location (City)</label>
+            <input type="text" id="location" class="form-control" placeholder="Enter your city" required>
+          </div>
+          
+          <div class="terms-group">
+            <input type="checkbox" id="terms" required>
+            <label for="terms">I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a></label>
+          </div>
+          
+          <button type="submit" class="btn-block" id="registerBtn">Create Account</button>
+          
+          <div class="divider">
+            <span class="divider-text">or sign up with</span>
+          </div>
+          
+          <div class="social-login">
+            <button type="button" class="social-btn google">
+              <i class="fab fa-google"></i> Google
+            </button>
+            <button type="button" class="social-btn facebook">
+              <i class="fab fa-facebook-f"></i> Facebook
+            </button>
+          </div>
+          
+          <div class="form-footer">
+            Already have an account? <a href="login.html">Log in</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tutorBtn = document.getElementById('tutorBtn');
+      const studentBtn = document.getElementById('studentBtn');
+      const tutorFields = document.getElementById('tutorFields');
+      const studentFields = document.getElementById('studentFields');
+      const passwordInput = document.getElementById('password');
+      const strengthMeter = document.getElementById('strengthMeter');
+      
+      // Initialize user type
+      tutorFields.style.display = 'block';
+      
+      // Update UI when user type changes
+      document.querySelectorAll('input[name="userType"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.value === 'tutor') {
+            tutorBtn.classList.add('active');
+            studentBtn.classList.remove('active');
+            tutorFields.style.display = 'block';
+            studentFields.style.display = 'none';
+          } else {
+            studentBtn.classList.add('active');
+            tutorBtn.classList.remove('active');
+            tutorFields.style.display = 'none';
+            studentFields.style.display = 'block';
+          }
+        });
+      });
+      
+      // Password strength indicator
+      passwordInput.addEventListener('input', function() {
+        const password = this.value;
+        let strength = 0;
+        
+        if (password.length >= 8) strength += 1;
+        if (password.length >= 12) strength += 1;
+        if (/[A-Z]/.test(password)) strength += 1;
+        if (/[0-9]/.test(password)) strength += 1;
+        if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+        
+        const width = (strength / 5) * 100;
+        strengthMeter.style.width = width + '%';
+        
+        if (strength <= 2) {
+          strengthMeter.style.backgroundColor = '#dc3545';
+        } else if (strength <= 4) {
+          strengthMeter.style.backgroundColor = '#ffc107';
+        } else {
+          strengthMeter.style.backgroundColor = '#28a745';
+        }
+      });
+      
+      // Form submission
+      document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const location = document.getElementById('location').value;
+        const userType = document.querySelector('input[name="userType"]:checked').value;
+        
+        if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          return;
+        }
+        
+        let roleSpecificData = {};
+        if (userType === 'tutor') {
+          roleSpecificData = {
+            qualification: document.getElementById('qualification').value,
+            subjects: document.getElementById('subjects').value,
+            experience: document.getElementById('experience').value
+          };
+        } else {
+          roleSpecificData = {
+            gradeLevel: document.getElementById('gradeLevel').value,
+            interestedSubjects: document.getElementById('interestedSubjects').value
+          };
+        }
+        
+        const formData = {
+          firstName,
+          lastName,
+          email,
+          password,
+          location,
+          userType,
+          ...roleSpecificData
+        };
+        
+        console.log('Registration data:', formData);
+        alert(`Registering as ${userType} (this would connect to your backend in a real application)`);
+      });
+    });
+  </script>
+  <!-- Add this script at the bottom of your register.html -->
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const userType = document.querySelector('input[name="userType"]:checked').value;
+    
+    // Validate passwords match
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+
+    // Create user with Firebase Auth
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Save additional user data to Firestore
+        return db.collection('users').doc(userCredential.user.uid).set({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          userType: userType,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      })
+      .then(() => {
+        // Redirect based on user type
+        if (userType === 'tutor') {
+          window.location.href = 'tutor-dashboard.html';
+        } else {
+          window.location.href = 'student-dashboard.html';
+        }
+      })
+      .catch((error) => {
+        alert('Registration failed: ' + error.message);
+      });
+  });
+
+  // Toggle between tutor/student fields
+  document.querySelectorAll('input[name="userType"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      document.getElementById('tutorFields').style.display = 
+        this.value === 'tutor' ? 'block' : 'none';
+      document.getElementById('studentFields').style.display = 
+        this.value === 'student' ? 'block' : 'none';
+    });
+  });
+</script>
+</body>
+</html>
