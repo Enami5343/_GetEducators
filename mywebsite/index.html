@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GetEducators</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    
+    :root {
+      --primary-color: #4a6fa5;
+      --secondary-color: #166088;
+      --accent-color: #4fc3f7;
+      --light-color: #f8f9fa;
+      --dark-color: #343a40;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+      --danger-color: #dc3545;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-color);
+      color: var(--dark-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--secondary-color);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 24px;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      transition: var(--transition);
+      text-align: center;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: var(--box-shadow);
+    }
+
+    /* Header Styles */
+    header {
+      background-color: white;
+      box-shadow: var(--box-shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 15px 0;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+            height: 55px;
+            margin-right: 10px;
+        }
+
+    .logo h1 {
+      font-size: 24px;
+      color: var(--primary-color);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+    }
+
+    nav ul li a {
+      color: var(--dark-color);
+      font-weight: 500;
+      padding: 5px 0;
+      position: relative;
+    }
+
+    nav ul li a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover:after,
+    nav ul li a.active:after {
+      width: 100%;
+    }
+
+    nav ul li a.active {
+      color: var(--primary-color);
+    }
+
+  /* Hero Section */
+.hero {
+  background-color: #122A3F;
+  color: white;
+  padding: 40px 0; /* reduced from 100px */
+  margin-bottom: 40px; /* slightly smaller */
+}
+
+.hero .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px; /* smaller gap */
+  flex-wrap: wrap;
+}
+
+/* Text Side */
+.hero-content {
+  flex: 1;
+  min-width: 280px;
+  text-align: left;
+  background-color: #122A3F;
+  padding: 16px; /* reduced padding */
+  border-radius: 12px;
+}
+
+.hero h2 {
+  font-size: 32px; /* reduced from 42px */
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 16px; /* reduced from 18px */
+  margin: 0 0 24px 0;
+  max-width: 100%;
+  white-space: nowrap; /* if you still want no break */
+}
+
+/* Image Side */
+.hero-image {
+  flex: 1;
+  min-width: 280px;
+  background-color: #122A3F;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  max-width: 80%; /* reduced size visually */
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+
+
+   /* Features Section */
+.features {
+  padding: 40px 0; /* reduced */
+}
+
+.features .container {
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 28px; /* reduced from 36px */
+  margin-bottom: 30px;
+  color: var(--dark-color);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; /* slightly tighter */
+}
+
+.feature-card {
+  background-color: white;
+  padding: 20px; /* reduced */
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+}
+
+.feature-card i {
+  font-size: 36px; /* reduced from 50px */
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  font-size: 20px; /* slightly smaller */
+  margin-bottom: 10px;
+  color: var(--dark-color);
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+
+    /* Call to Action */
+    .cta {
+      padding: 80px 0;
+      background-color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      font-size: 18px;
+      color: #6c757d;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      padding: 60px 0 0;
+    }
+
+    footer .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .footer-section p, 
+    .footer-section ul li {
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: var(--transition);
+    }
+
+    .footer-section ul li a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+
+    .copyright {
+      text-align: center;
+      padding: 20px 0;
+      background-color: rgba(0, 0, 0, 0.2);
+      font-size: 14px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header .container {
+        flex-direction: column;
+      }
+      
+      nav ul {
+        margin-top: 20px;
+      }
+      
+      
+      .hero {
+        padding: 80px 0;
+      }
+      
+      
+      .hero h2 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h2 {
+        font-size: 28px;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">
+                <img src="C:\Users\Enami\Desktop\mywebsite\images\logo.jpg" alt="GetEducators">
+                
+            </div>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="tutors.html">Find Tutors</a></li>
+          <li><a href="auth/login.html">Login</a></li>
+          <li><a href="auth/register.html" class="btn">Sign Up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h2>Find the Perfect Tutor for You</h2>
+      <p>Connect with verified tutors based on your subject, level, and location.</p>
+      <a href="tutors.html" class="btn">Browse Tutors</a>
+    </div>
+    <div class="hero-image">
+      <img src="C:\Users\Enami\Desktop\mywebsite\images\hero.jpg" alt="Hero Image" />
+    </div>
+  </div>
+</section>
+
+
+  <!-- Features Section -->
+<section class="features">
+  <div class="container">
+    <h2>Why Choose Us?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <i class="fas fa-user-shield"></i>
+        <h3>Verified Tutors</h3>
+        <p>All tutors are background checked and reviewed by students.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-calendar-check"></i>
+        <h3>Easy Booking</h3>
+        <p>Book sessions with just a few clicks — no hassle or delays.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-wallet"></i>
+        <h3>Flexible Payments</h3>
+        <p>Pay only for the hours you need — securely and easily.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <div class="container">
+      <h2>Are You a Tutor?</h2>
+      <p>Join our growing network and help students achieve their goals.</p>
+      <a href="auth/register.html" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-section">
+        <h3>GetEducators</h3>
+        <p>Bridging the gap between students and qualified tutors.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="tutors.html">Browse Tutors</a></li>
+          <li><a href="auth/login.html">Login</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: info@geteducators.com</p>
+        <p>Phone: +8801792465620</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 GetEducators. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://kit.fontawesome.com/a2e00be12f.js" crossorigin="anonymous"></script>
+</body>
+</html>  
